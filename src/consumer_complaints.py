@@ -54,7 +54,7 @@ if __name__ == '__main__':
         r[0].append(r[1])
         ordered.append(r[0])
 
-    for r in intechange_columns_count(set((map(tuple,filtered_fields)))):
+    for r in interchange_columns_count(set((map(tuple,filtered_fields)))):
         third_column.append(r[1])
     
     for r in ordered:
