@@ -39,7 +39,7 @@ if __name__ == '__main__':
             for r in rdr:
                 wtr.writerow((r[0],r[1],r[7]))
             
-    f = open("output_file","r")
+    f = open(output_file,"r")
     next(f)
     csv_f = csv.reader(f)
     v=list(csv_f)
