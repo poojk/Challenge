@@ -14,8 +14,8 @@ def interchange_columns_count(lis):
     for k in lis:
         c=[k[0],k[1]]
         a.append(c)
-    for x in (set((map(tuple,a)))):
-        b.append([x,a.count(list(x))])
+    for x in (set((map(tuple,a)))):                 #mapping the items in the list to a tuple and iterating through a set
+        b.append([x,a.count(list(x))])              #appending the count of the number of occurences
     return(sorted(b))
 
 def percentage_double_quotes(fin):
@@ -37,7 +37,7 @@ def filter_year_from_date(v):
     """
     Input:Initial list with three columns in the order date, product and company
     Output: List where the date column contains only the year
-    Function: This function splits the values in the cell with resoect to "-" and assigns the date part as teh value of the cell itself
+    Function: This function splits the values in the cell with resoect to "-" and assigns the date part as the value of the cell itself
     """
     for row in v:
         parts = row[0].split('-')
