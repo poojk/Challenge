@@ -60,7 +60,6 @@ if __name__ == '__main__':
     for r in ordered:
         r.append(third_column[i])
         i+=1
-    print (ordered)
             
     with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
