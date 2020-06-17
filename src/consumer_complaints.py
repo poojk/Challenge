@@ -1,9 +1,9 @@
 import csv
 import functions.py
 
-with open("complaints.csv","r",encoding='UTF-8') as input:
+with open("./input/complaints.csv","r",encoding='UTF-8') as input:
     rdr= csv.reader( input )
-    with open("report.csv","w", newline='') as output:
+    with open("./output/report.csv","w", newline='') as output:
         wtr= csv.writer( output )
         for r in rdr:
             wtr.writerow((r[0],r[1],r[7]))
@@ -29,7 +29,7 @@ for r in ordered:
     r.append(third_column[i])
     i+=1
             
-with open("report.csv","w", newline='') as output:
+with open("./output/report.csv","w", newline='') as output:
         wtr= csv.writer( output )
         for r in percentage_double_quotes(ordered):
             wtr.writerow(r)
