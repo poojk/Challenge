@@ -26,7 +26,6 @@ def percentage_double_quotes(fin):
 def filter_year_from_date(v):
     for row in v:
         parts = row[0].split('-')
-        print (parts)
         data = parts[0]
         row[0]=data
     return(v)
@@ -61,6 +60,7 @@ if __name__ == '__main__':
     for r in ordered:
         r.append(third_column[i])
         i+=1
+    print (ordered)
             
     with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
