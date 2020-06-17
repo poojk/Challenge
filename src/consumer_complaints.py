@@ -24,7 +24,6 @@ def percentage_double_quotes(fin):
 
 def filter_year_from_date(v):
     for row in v:
-        print (row)
         parts = row[0].split('-')
         print (parts)
         data = parts[0]
