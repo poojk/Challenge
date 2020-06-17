@@ -39,7 +39,7 @@ if __name__ == '__main__':
             for r in rdr:
                 wtr.writerow((r[0],r[1],r[7]))
             
-    f = open("report.csv","r")
+    f = open("OUTPUT_PATH","r")
     next(f)
     csv_f = csv.reader(f)
     v=list(csv_f)
