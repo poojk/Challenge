@@ -6,9 +6,9 @@ ordered,third_column=[],[]      #initializing emply lists for storage of tempora
 
 def interchange_columns_count(lis):
     """
-    Input:
-    Output:
-    Function:
+    Input:List with three columns in the order product,date and company
+    Output: Sorted list with the column order date, product, number of occurences of a (product,year)
+    Function:After interchanging the first and second columns of 
     """
     a,b=[],[]
     for k in lis:
@@ -35,7 +35,7 @@ def percentage_double_quotes(fin):
 
 def filter_year_from_date(v):
     """
-    Input:Initial list with three columns in the order product,date and company
+    Input:Initial list with three columns in the order date, product and company
     Output: List where the date column contains only the year
     Function: This function splits the values in the cell with resoect to "-" and assigns the date part as teh value of the cell itself
     """
