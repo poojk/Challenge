@@ -18,7 +18,7 @@ def percentage_double_quotes(fin):
         i[0]=i[0].lower()
         if "," in i[0]:
             str=i[0]
-            i[0]= "'" + str + "'"
+            i[0]= """ + str + """
         d=round((i[3]/i[2])*100)
         i.append(d)
     return(fin)
