@@ -15,8 +15,8 @@ def interchange_columns_count(lis):
         c=[k[0],k[1]]
         a.append(c)
     for x in (set((map(tuple,a)))):                 #mapping the items in the list to a tuple and iterating through a set
-        b.append([x,a.count(list(x))])              #appending the count of the number of occurences
-    return(sorted(b))
+        b.append([x,a.count(list(x))])              #appending the count of the number of occurences of the item in the input
+    return(sorted(b))                               #sorting the output list so that the products are displayed in alphabetical order and the years are sorted as well
 
 def percentage_double_quotes(fin):
     """
@@ -25,10 +25,10 @@ def percentage_double_quotes(fin):
     Function: This function first converts the first field in the list into lowercase and then checks whether it contains a ",". If yes, it adds quotes to the field. After this, percentage is calculated for the third and fourth fields and the value is appended to the last column of the list.
     """
     for i in fin:
-        i[0]=i[0].lower()
+        i[0]=i[0].lower()               #converting the product names in the first column into lower case
         if "," in i[0]:
             str=i[0]
-            i[0]= '"' + str + '"'
+            i[0]= '"' + str + '"'       #adding quotes to the product names that contain "'"in them
         d=round((i[3]/i[2])*100)
         i.append(d)
     return(fin)
@@ -40,19 +40,19 @@ def filter_year_from_date(v):
     Function: This function splits the values in the cell with resoect to "-" and assigns the date part as the value of the cell itself
     """
     for row in v:
-        parts = row[0].split('-')
+        parts = row[0].split('-')                   #splitting the date field as yyyy,mm,dd
         data = parts[0]
-        row[0]=data
+        row[0]=data                                 #assigning the year part to the date field of every item
     return(v)
 
 if __name__ == '__main__':
     """
     Function: Main function with the function calls and operations with input and output files
     """
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    input_file = sys.argv[1]                    #accepting the second arguement of the command line as the input file
+    output_file = sys.argv[2]                   #accepting the third arguement of the command line as the output file
     #using the csv attributes for reading from and writing into files
-    with open(input_file,"r",encoding='UTF-8') as input:
+    with open(input_file,"r",encoding='UTF-8') as input:            #opening the input file in the UTF-8 format
         rdr= csv.reader( input )
         with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
