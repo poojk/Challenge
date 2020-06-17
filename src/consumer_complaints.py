@@ -1,5 +1,5 @@
 import csv
-import functions.py
+import ../functions
 
 with open("./input/complaints.csv","r",encoding='UTF-8') as input:
     rdr= csv.reader( input )
