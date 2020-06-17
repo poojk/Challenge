@@ -15,6 +15,7 @@ def interchange_columns_count(lis):
 
 def percentage_double_quotes(fin):   
     for i in fin:
+        i[0]=i[0].lower()
         if "," in i[0]:
             str=i[0]
             i[0]= "\"" + str + "\""
