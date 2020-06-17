@@ -1,10 +1,15 @@
-import csv
-import sys
+import csv                      #This module is used for performing operations on .csv files
+import sys                      #This module is used to accept command line arguments as input
 
-i=0
-ordered,third_column=[],[]
+i=0                             #initializing global iterator
+ordered,third_column=[],[]      #initializing emply lists for storage of temporary lists
 
 def interchange_columns_count(lis):
+    """
+    Input:
+    Output:
+    Function:
+    """
     a,b=[],[]
     for k in lis:
         c=[k[0],k[1]]
@@ -13,7 +18,12 @@ def interchange_columns_count(lis):
         b.append([x,a.count(list(x))])
     return(sorted(b))
 
-def percentage_double_quotes(fin):   
+def percentage_double_quotes(fin):
+    """
+    Input: Final list with the columns in the order product,date, number of complaints recieved that year, minimum number of companies recieving the complaint
+    Output: List where the last column contains the percentage and the product name is has quotes and is in lower case
+    Function: This function first converts the first field in the list into lowercase and then checks whether it contains a ",". If yes, it adds quotes to the field. After this, percentage is calculated for the third and fourth fields and the value is appended to the last column of the list.
+    """
     for i in fin:
         i[0]=i[0].lower()
         if "," in i[0]:
@@ -24,6 +34,11 @@ def percentage_double_quotes(fin):
     return(fin)
 
 def filter_year_from_date(v):
+    """
+    Input:Initial list with three columns in the order product,date and company
+    Output: List where the date column contains only the year
+    Function: This function splits the values in the cell with resoect to "-" and assigns the date part as teh value of the cell itself
+    """
     for row in v:
         parts = row[0].split('-')
         data = parts[0]
@@ -31,7 +46,9 @@ def filter_year_from_date(v):
     return(v)
 
 if __name__ == '__main__':
-    #main function with the function calls and operations with input and output files
+    """
+    Function: Main function with the function calls and operations with input and output files
+    """
     input_file = sys.argv[1]
     output_file = sys.argv[2]
     #using the csv attributes for reading from and writing into files
