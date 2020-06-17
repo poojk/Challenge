@@ -30,16 +30,16 @@ def filter_year_from_date(v):
     return(v)
 
 if __name__ == '__main__':
-    INPUT_PATH = sys.argv[1]
-    OUTPUT_PATH = sys.argv[2]
-    with open(INPUT_PATH,"r",encoding='UTF-8') as input:
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    with open(input_file,"r",encoding='UTF-8') as input:
         rdr= csv.reader( input )
-        with open(OUTPUT_PATH,"w", newline='') as output:
+        with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
             for r in rdr:
                 wtr.writerow((r[0],r[1],r[7]))
             
-    f = open("OUTPUT_PATH","r")
+    f = open("output_file","r")
     next(f)
     csv_f = csv.reader(f)
     v=list(csv_f)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         r.append(third_column[i])
         i+=1
             
-    with open(OUTPUT_PATH,"w", newline='') as output:
+    with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
             for r in percentage_double_quotes(ordered):
                 wtr.writerow(r)
