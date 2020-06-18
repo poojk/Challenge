@@ -65,6 +65,21 @@ def filter_year_from_date(v):
             print("Date not in proper format")
     return (v)
 
+def capture_columns(file):
+    with open(file,"r",encoding='UTF-8') as input:
+        rdr= csv.reader(input)
+        i=list(rdr)
+        k=list(i[0])
+        global date_index,product_index,company_index
+        for i in k:
+            if i.lower() == "date received":
+                date_index = k.index(i)
+            elif i.lower() == "product":
+                product_index = k.index(i)
+            elif i.lower() == "company":
+                company_index = k.index(i)
+    return(date_index,product_index,company_index)
+
 if __name__ == '__main__':
     """
     Function: Main function with the function calls and operations with input and output files
@@ -74,21 +89,15 @@ if __name__ == '__main__':
     output_file = sys.argv[2]                   
     #using the csv attributes for reading from and writing into files
     #opening the input file in the UTF-8 format
+    date,product,company=capture_columns(input_file)
     with open(input_file,"r",encoding='UTF-8') as input:            
-        rdr= csv.reader( input )
-        a=list(rdr)
-        #for i in range(len(a[0])):
-        #    if a[0][i].lower() == "date received":
-        #        date = i
-        #    elif a[0][i].lower() == "product":
-        #        product = i
-        #    elif a[0][i].lower() == "company":
-        #        company = i
-        with open(output_file,"w", newline='') as output:
+        rdr= csv.reader(input)    
+        with open(output_file","w", newline='') as output:
             wtr= csv.writer( output )
-            #filtering out only the Product, Date and Company fields
+           #filtering out only the Product, Date and Company fields
             for r in rdr:
-                wtr.writerow((r[0],r[1],r[7]))
+                #print(r[0])
+                wtr.writerow((r[date],r[product],r[company]))
     
     #All operations performed from the output file contents
     f = open(output_file,"r")
@@ -100,7 +109,7 @@ if __name__ == '__main__':
     
     #fitering out the year from the date field in the entire input,interchanging the first and second column to be in the format (Product,Year) and adding the company field
     M = list(zip(*(filter_year_from_date(v))))              
-    M[0], M[1] = M[1], M[0]                                 
+    #M[0], M[1] = M[1], M[0]                                 
     filtered_fields=[list(t) for t in zip(*M)]              
     
     #iterating through the list with the number of complaints recieved in a year
