@@ -76,17 +76,17 @@ if __name__ == '__main__':
     #opening the input file in the UTF-8 format
     with open(input_file,"r",encoding='UTF-8') as input:            
         rdr= csv.reader( input )
+        a=list(rdr)
+        for i in range(len(a[0])):
+            if a[0][i].lower() == "date received":
+                date = i
+            elif a[0][i].lower() == "product":
+                product = i
+            elif a[0][i].lower() == "company":
+                company = i
         with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
             #filtering out only the Product, Date and Company fields
-            a=list(rdr)
-            for i in range(len(a[0])):
-                if a[0][i].lower() == "date received":
-                    d = int(i)
-                elif a[0][i].lower() == "product":
-                    p = int(i)
-                elif a[0][i].lower() == "company":
-                    c = int(i)
             for r in rdr:
                 wtr.writerow((r[0],r[1],r[7]))
     
