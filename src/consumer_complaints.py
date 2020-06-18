@@ -79,6 +79,14 @@ if __name__ == '__main__':
         with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
             #filtering out only the Product, Date and Company fields
+            a=list(rdr)
+            for i in range(len(a[0])):
+                if a[0][i].lower() == "date received":
+                    d = int(i)
+                elif a[0][i].lower() == "product":
+                    p = int(i)
+                elif a[0][i].lower() == "company":
+                    c = int(i)
             for r in rdr:
                 wtr.writerow((r[0],r[1],r[7]))
     
