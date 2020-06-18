@@ -76,7 +76,7 @@ if __name__ == '__main__':
     #opening the input file in the UTF-8 format
     with open(input_file,"r",encoding='UTF-8') as input:            
         rdr= csv.reader( input )
-        #a=list(rdr)
+        a=list(rdr)
         #for i in range(len(a[0])):
         #    if a[0][i].lower() == "date received":
         #        date = i
