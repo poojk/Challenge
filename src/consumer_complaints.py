@@ -1,8 +1,11 @@
-import csv                      #This module is used for performing operations on .csv files
-import sys                      #This module is used to accept command line arguments as input
+#This module is used for performing operations on .csv files
+import csv
 
-i=0                             #initializing global iterator
-ordered,third_column=[],[]      #initializing emply lists for storage of temporary lists
+#This module is used to accept command line arguments as input
+import sys                 
+
+#initializing global iterator and emply lists for storage of temporary lists
+i,ordered,third_column=0,[],[]                             
 
 def interchange_columns_count(lis):
     """
@@ -14,9 +17,11 @@ def interchange_columns_count(lis):
     for k in lis:
         c=[k[0],k[1]]
         a.append(c)
-    for x in (set((map(tuple,a)))):                 #mapping the items in the list to a tuple and iterating through a set
-        b.append([x,a.count(list(x))])              #appending the count of the number of occurences of the item in the input
-    return(sorted(b))                               #sorting the output list so that the products are displayed in alphabetical order and the years are sorted as well
+    #mapping the items in the list to a tuple and iterating through a set    
+    for x in (set((map(tuple,a)))):                 
+        b.append([x,a.count(list(x))])
+    #sorting the output list so that the products are displayed in alphabetical order and the years are sorted as well
+    return(sorted(b))                               
 
 def percentage_double_quotes(fin):
     """
@@ -25,10 +30,12 @@ def percentage_double_quotes(fin):
     Function: This function first converts the first field in the list into lowercase and then checks whether it contains a ",". If yes, it adds quotes to the field. After this, percentage is calculated for the third and fourth fields and the value is appended to the last column of the list.
     """
     for i in fin:
-        i[0]=i[0].lower()               #converting the product names in the first column into lower case
+        #converting the product names in the first column into lower case
+        i[0]=i[0].lower()               
         if "," in i[0]:
-            str=i[0]
-            i[0]= '"' + str + '"'       #adding quotes to the product names that contain "'"in them
+            i[0]=str(i[0])
+            #i[0]= '"' + str + '"'
+        #adding quotes to the product names that contain "'"in them    
         d=round((i[3]/i[2])*100)
         i.append(d)
     return(fin)
@@ -40,19 +47,23 @@ def filter_year_from_date(v):
     Function: This function splits the values in the cell with resoect to "-" and assigns the date part as the value of the cell itself
     """
     for row in v:
-        parts = row[0].split('-')                   #splitting the date field as yyyy,mm,dd
+        #splitting the date field as yyyy,mm,dd
+        parts = row[0].split('-')                   
         data = parts[0]
-        row[0]=data                                 #assigning the year part to the date field of every item
+        #assigning the year part to the date field of every item
+        row[0]=data                                 
     return(v)
 
 if __name__ == '__main__':
     """
     Function: Main function with the function calls and operations with input and output files
     """
-    input_file = sys.argv[1]                    #accepting the second arguement of the command line as the input file
-    output_file = sys.argv[2]                   #accepting the third arguement of the command line as the output file
+    #accepting the second and third arguements of the command line as the input and output file respectively
+    input_file = sys.argv[1]                    
+    output_file = sys.argv[2]                   
     #using the csv attributes for reading from and writing into files
-    with open(input_file,"r",encoding='UTF-8') as input:            #opening the input file in the UTF-8 format
+    #opening the input file in the UTF-8 format
+    with open(input_file,"r",encoding='UTF-8') as input:            
         rdr= csv.reader( input )
         with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
@@ -62,27 +73,34 @@ if __name__ == '__main__':
     
     #All operations performed from the output file contents
     f = open(output_file,"r")
-    next(f)                     #skipping the name row
+    #skipping the row with column labels
+    next(f)                     
     csv_f = csv.reader(f)
-    v=list(csv_f)               #convering the contents of the file into a list
+    #converting the contents of the file into a list
+    v=list(csv_f)
     
-    M = list(zip(*(filter_year_from_date(v))))              #fitering out the year from the date field in the entire input
-    M[0], M[1] = M[1], M[0]                                 #interchanging the first and second column to be in the format (Product,Year)
-    filtered_fields=[list(t) for t in zip(*M)]              #Adding the (Product,Year) fields to the Company field
-
-    for r in interchange_columns_count(filtered_fields):        #iterating through the list with the number of complaints recieved in a year
+    #fitering out the year from the date field in the entire input,interchanging the first and second column to be in the format (Product,Year) and adding the company field
+    M = list(zip(*(filter_year_from_date(v))))              
+    M[0], M[1] = M[1], M[0]                                 
+    filtered_fields=[list(t) for t in zip(*M)]              
+    
+    #iterating through the list with the number of complaints recieved in a year
+    for r in interchange_columns_count(filtered_fields):        
         r[0]=list(r[0])                                           
         r[0].append(r[1])
-        ordered.append(r[0])                                    #Adding the count as another column in the main list
+        ordered.append(r[0])                                    
 
-    for r in interchange_columns_count(set((map(tuple,filtered_fields)))):    #counting the number of companies with atleast one complaint per product
-        third_column.append(r[1])                                             #adding the count to another list
-    
+    #counting the number of companies with atleast one complaint per product and adding the count to another new list    
+    for r in interchange_columns_count(set((map(tuple,filtered_fields)))):    
+        third_column.append(r[1])
+        
+    #appending the count to the last column of the main list
     for r in ordered:
-        r.append(third_column[i])                                           #appending the count to the last column of the main list
+        r.append(third_column[i])                                           
         i+=1
-            
+        
+    #converting everything to lowercase and adding percentage,adding quotes to the product and writing the final list to the output file        
     with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
-            for r in percentage_double_quotes(ordered):                        #converting everything to lowercase and adding percentage and adding quotes
-                wtr.writerow(r)                                                #writing the final list to the output file
+            for r in percentage_double_quotes(ordered):                        
+                wtr.writerow(r)                                                
