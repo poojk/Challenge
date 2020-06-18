@@ -12,6 +12,9 @@ The `consumer_complaints.py` script reads the input file, filters out the requir
 ## Instructions
 The 'run.sh' file in the home directory can be used for execution. Also, execution can be triggered by executing the following command in the terminal
 
-```python3.7 ./src/consumer_complaints.py ./input/complaints.csv ./output/report.csv
+```
+
+python3.7 ./src/consumer_complaints.py ./input/complaints.csv ./output/report.csv
+
 ```
 The above command takes input and output file paths as arguments. The output file is pushed into the following path when the program consumer_complaints.py is executed.
