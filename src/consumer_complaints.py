@@ -47,12 +47,19 @@ def filter_year_from_date(v):
     Function: This function splits the values in the cell with resoect to "-" and assigns the date part as the value of the cell itself
     """
     for row in v:
-        #splitting the date field as yyyy,mm,dd
-        parts = row[0].split('-')                   
-        data = parts[0]
-        #assigning the year part to the date field of every item
-        row[0]=data                                 
-    return(v)
+        if "/" in row[0]:
+            parts=row[0].split('/')
+            for a in parts:
+                if len(str(a)) == 4:
+                    row[0]=a
+        elif "-" in row[0]:
+            parts=row[0].split('-')
+            for a in parts:
+                if len(str(a)) == 4:
+                    row[0]=a
+        else:
+            print("Date not in proper format")
+    return (v)
 
 if __name__ == '__main__':
     """
