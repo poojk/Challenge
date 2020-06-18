@@ -92,7 +92,7 @@ if __name__ == '__main__':
     date,product,company=capture_columns(input_file)
     with open(input_file,"r",encoding='UTF-8') as input:            
         rdr= csv.reader(input)    
-        with open(output_file","w", newline='') as output:
+        with open(output_file,"w", newline='') as output:
             wtr= csv.writer( output )
            #filtering out only the Product, Date and Company fields
             for r in rdr:
