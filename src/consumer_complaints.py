@@ -109,7 +109,7 @@ if __name__ == '__main__':
     
     #fitering out the year from the date field in the entire input,interchanging the first and second column to be in the format (Product,Year) and adding the company field
     M = list(zip(*(filter_year_from_date(v))))              
-    #M[0], M[1] = M[1], M[0]                                 
+    M[0], M[1] = M[1], M[0]                                 
     filtered_fields=[list(t) for t in zip(*M)]              
     
     #iterating through the list with the number of complaints recieved in a year
