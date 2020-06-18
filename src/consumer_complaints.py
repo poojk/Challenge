@@ -44,9 +44,12 @@ def filter_year_from_date(v):
     """
     Input:Initial list with three columns in the order date, product and company
     Output: List where the date column contains only the year
-    Function: This function splits the values in the cell with resoect to "-" and assigns the date part as the value of the cell itself
+    Function: This function splits the values in the cell and filters out the year part,immaterial of what format the date is of
     """
     for row in v:
+        """
+        If the date is of the format mm/dd/yyyy, yyyy/mm/dd, yyyy-mm-dd, mm-dd-yyyy or any of the combinations with "/" or "-" in it, the year part is filtered out accordingly.
+        """
         if "/" in row[0]:
             parts=row[0].split('/')
             for a in parts:
@@ -58,6 +61,7 @@ def filter_year_from_date(v):
                 if len(str(a)) == 4:
                     row[0]=a
         else:
+            #error handled in case the date is not in proper format
             print("Date not in proper format")
     return (v)
 
