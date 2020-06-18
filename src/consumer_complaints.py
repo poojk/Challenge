@@ -66,6 +66,12 @@ def filter_year_from_date(v):
     return (v)
 
 def capture_columns(file):
+    """
+    Input:Input file
+    Output: Indexes of the required columns in the input file
+    Function:This function captures the columns with the names date received, company and product.
+             These are the three columns that are needed so as to proceed further and do calculations.
+    """
     with open(file,"r",encoding='UTF-8') as input:
         rdr= csv.reader(input)
         i=list(rdr)
